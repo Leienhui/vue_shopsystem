@@ -1,0 +1,9 @@
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 要使用这个样式，只需要到main.js中去导入即可 */
