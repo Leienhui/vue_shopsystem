@@ -161,7 +161,7 @@
             placement="top"
             ><el-button
               size="mini"
-              type="warm"
+              type="warning"
               icon="el-icon-setting"
               circle
             ></el-button
