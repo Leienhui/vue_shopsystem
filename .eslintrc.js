@@ -21,5 +21,6 @@ module.exports = {
       "exports": "never",
       "functions": "never"
     }],
+    "key-spacing": 0
   }
 }

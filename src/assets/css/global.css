@@ -6,4 +6,16 @@ body,
     padding: 0;
 }
 
+.el-breadcrumb {
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+.el-table{
+    margin-top: 15px;
+    font-size: 12px;
+}
+.el-pagination{
+    margin-top: 15px;
+}
+
 /* 要使用这个样式，只需要到main.js中去导入即可 */

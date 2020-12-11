@@ -1,14 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import login from './../components/login.vue'
-import home from './../components/home.vue'
+import login from './../components/Login.vue'
+import home from './../components/Home.vue'
+import welcome from './../components/Welcome.vue'
+import Users from './../components/user/Users.vue'
+import Roles from './../components/user/Roles.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: login },
-  { path: '/home', component: home }
+  // 让welcome这个组件变成home的子路由规则
+  {
+    path: '/home',
+    component: home,
+    redirect:'/welcome',
+    children:[
+      { path:'/welcome', component:welcome },
+      { path:'/users', component:Users },
+      { path:'/roles', component:Roles }
+    ]
+  }
+
 ]
 
 const router = new VueRouter({
