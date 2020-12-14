@@ -4,6 +4,7 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
+    min-width: 1366px;
 }
 
 .el-breadcrumb {
@@ -17,5 +18,6 @@ body,
 .el-pagination{
     margin-top: 15px;
 }
+
 
 /* 要使用这个样式，只需要到main.js中去导入即可 */

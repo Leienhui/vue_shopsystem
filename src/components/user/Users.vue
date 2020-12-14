@@ -108,42 +108,6 @@
             >
             </el-button
           ></el-tooltip>
-          <el-dialog
-            title="修改用户"
-            :visible.sync="editDialogVisible"
-            width="50%"
-            @close="editCloseDialog"
-          >
-            <!-- 内容主体区域 -->
-            <!-- 表单校验
-            1、:model=>数据绑定对象
-            2、:rules=>验证规则对象
-            3、ref=>引用对象
-            4、prop=>指定具体的校验规则
-            5、v-model=>绑定数据绑定对象（:model绑定的属性）
-             -->
-            <el-form
-              :model="editForm"
-              :rules="editFormRules"
-              ref="editFormRef"
-              label-width="70px"
-            >
-              <el-form-item label="用户名">
-                <el-input v-model="editForm.username" disabled></el-input>
-              </el-form-item>
-              <el-form-item label="邮箱" prop="email">
-                <el-input v-model="editForm.email"></el-input>
-              </el-form-item>
-              <el-form-item label="手机" prop="mobile">
-                <el-input v-model="editForm.mobile"></el-input>
-              </el-form-item>
-            </el-form>
-            <!-- 底部区域 -->
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="editDialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="editUserInfo">确 定</el-button>
-            </span>
-          </el-dialog>
           <el-tooltip class="item" effect="dark" content="删除" placement="top"
             ><el-button
               size="mini"
@@ -164,6 +128,7 @@
               type="warning"
               icon="el-icon-setting"
               circle
+              @click="setRoles(scope.row)"
             ></el-button
           ></el-tooltip>
         </template>
@@ -180,6 +145,69 @@
       :total="total"
     >
     </el-pagination>
+    <el-dialog
+      title="修改用户"
+      :visible.sync="editDialogVisible"
+      width="50%"
+      @close="editCloseDialog"
+    >
+      <!-- 内容主体区域 -->
+      <!-- 表单校验
+            1、:model=>数据绑定对象
+            2、:rules=>验证规则对象
+            3、ref=>引用对象
+            4、prop=>指定具体的校验规则
+            5、v-model=>绑定数据绑定对象（:model绑定的属性）
+             -->
+      <el-form
+        :model="editForm"
+        :rules="editFormRules"
+        ref="editFormRef"
+        label-width="70px"
+      >
+        <el-form-item label="用户名">
+          <el-input v-model="editForm.username" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="editForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="手机" prop="mobile">
+          <el-input v-model="editForm.mobile"></el-input>
+        </el-form-item>
+      </el-form>
+      <!-- 底部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editUserInfo">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 分配角色 -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="allocationDialogVisible"
+      width="50%"
+      @close="allocationDialogClosed"
+    >
+      <div>
+        <p>当前的用户：{{userInfo.username}}</p>
+        <p>当前的角色：{{userInfo.role_name}}</p>
+        <p>分配新角色：
+          <el-select v-model="selectedRoleId" placeholder="请选择角色">
+            <el-option
+              v-for="item in rolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+         </el-select>
+        </p>
+      </div>
+      <!-- 底部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="allocationDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -290,7 +318,15 @@ export default {
             validator: validatorPhone
           }
         ]
-      }
+      },
+      // 分配角色
+      allocationDialogVisible:false,
+      // 需要分配角色的用户信息
+      userInfo:{},
+      // 角色列表
+      rolesList:[],
+      // 选中的角色id
+      selectedRoleId:''
     }
   },
   created() {
@@ -396,7 +432,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          const { data:res } = await this.$http.delete(`users/${id}`)
+          const { data: res } = await this.$http.delete(`users/${id}`)
           if (res.meta.status !== 200) return this.$message.error('删除失败')
           this.$message({
             type: 'success',
@@ -410,6 +446,32 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    // 分配角色
+    async setRoles(userInfo) {
+      this.userInfo = userInfo
+      // 获取所有的角色列表
+      this.allocationDialogVisible = true
+      const { data:res } = await this.$http.get('roles')
+      if (res.meta.status !== 200) return this.$message.error('获取角色列表失败')
+      this.rolesList = res.data
+    },
+    // 保存分配角色信息
+    async saveRoleInfo() {
+      if (!this.selectedRoleId) return this.$message.error('请选择角色')
+      // 给当前的用户添加角色j
+      const { data:res } = await this.$http.put(`users/${this.userInfo.id}/role`, { rid:this.selectedRoleId })
+      if (res.meta.status !== 200) return this.$message.error('添加角色失败')
+      this.getUserList()
+      this.allocationDialogVisible = false
+      this.$message.success('添加角色成功')
+    },
+    // 监听分配角色关闭对话框
+    allocationDialogClosed() {
+      // 将原先需要分配用户的信息设为空
+      this.selectedRoleId = ''
+      this.userInfo = {}
+      this.allocationDialogVisible = false
     }
   }
 }
