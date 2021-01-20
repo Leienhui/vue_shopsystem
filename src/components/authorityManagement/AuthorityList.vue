@@ -12,10 +12,10 @@
         <el-table-column
           prop="authName"
           label="权限名称"
-          width="180"
+          width="300"
         ></el-table-column>
-        <el-table-column prop="path" label="路径" width="180"></el-table-column>
-        <el-table-column prop="level" label="权限等级" width="180">
+        <el-table-column prop="path" label="路径" width="300"></el-table-column>
+        <el-table-column prop="level" label="权限等级" width="300">
           <!-- 自定义插槽 -->
           <template slot-scope="scope">
             <el-tag v-if="scope.row.level==='0'">一级权限</el-tag>

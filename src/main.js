@@ -9,6 +9,8 @@ import './assets/css/iconfont.css'
 import './assets/css/global.css'
 // 导入发起请求的包,然后将这个包挂载到vue的原型上去
 import axios from 'axios'
+// 导入插件(组件)
+import TreeTable from 'vue-table-with-tree-grid'
 // =================================以下组件的使用========================
 // 全局导入element ui
 import elementUi from 'element-ui'
@@ -29,6 +31,8 @@ axios.interceptors.request.use(config => {
 // 这样每个vue组件都可以通过this直接访问$http来发起网络请求
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+// 参数1:自定义名称,参数2:组件
+Vue.component('tree-table', TreeTable)
 new Vue({
   router,
   store,

@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import login from './../components/Login.vue'
-import home from './../components/Home.vue'
-import welcome from './../components/Welcome.vue'
-import Users from './../components/user/Users.vue'
-import Roles from './../components/authorityManagement/Roles.vue'
-import AuthorityList from './../components/authorityManagement/AuthorityList.vue'
-
 Vue.use(VueRouter)
+// 路由懒加载
+const Home = () => import('./../components/Home.vue')
+const Login = () => import('./../components/Login.vue')
+const Users = () => import('./../components/user/Users.vue')
+const Roles = () => import('./../components/authorityManagement/Roles.vue')
+const AuthorityList = () => import('./../components/authorityManagement/AuthorityList.vue')
+const GoodsCategory = () => import('./../components/goodsManagement/GoodsCategory.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
-  { path: '/login', component: login },
+  { path: '/login', component: Login },
   // 让welcome这个组件变成home的子路由规则
   {
     path: '/home',
-    component: home,
-    redirect:'/welcome',
+    component: Home,
+    redirect:'/users',
     children:[
-      { path:'/welcome', component:welcome },
       { path:'/users', component:Users },
       { path:'/rights', component:AuthorityList },
-      { path:'/roles', component:Roles }
+      { path:'/roles', component:Roles },
+      { path:'/categories', component:GoodsCategory }
     ]
   }
 
