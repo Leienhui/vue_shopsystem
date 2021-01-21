@@ -26,7 +26,7 @@
         </el-col>
         <el-col :span="4">
           <!-- 添加用户需要用dialog这个对话框 -->
-          <el-button type="text" @click="addDialogVisible = true"
+          <el-button type="primary" @click="addDialogVisible = true"
             >添加用户</el-button
           >
           <el-dialog

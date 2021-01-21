@@ -18,6 +18,10 @@ body,
 .el-pagination{
     margin-top: 15px;
 }
+.el-steps{
+    margin: 15px 0;
+}
+
 
 
 /* 要使用这个样式，只需要到main.js中去导入即可 */

@@ -2,13 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 // 路由懒加载
-const Home = () => import('./../components/Home.vue')
-const Login = () => import('./../components/Login.vue')
+const Home = () => import('./../components/home.vue')
+const Login = () => import('./../components/login.vue')
 const Users = () => import('./../components/user/Users.vue')
 const Roles = () => import('./../components/authorityManagement/Roles.vue')
 const AuthorityList = () => import('./../components/authorityManagement/AuthorityList.vue')
 const GoodsCategory = () => import('./../components/goodsManagement/GoodsCategory.vue')
 const GoodsParams = () => import('./../components/goodsManagement/GoodsParams.vue')
+const GoodsList = () => import('./../components/goodsManagement/GoodsList.vue')
+const AddGoods = () => import('./../components/goodsManagement/AddGoods.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -23,7 +25,9 @@ const routes = [
       { path:'/rights', component:AuthorityList },
       { path:'/roles', component:Roles },
       { path:'/categories', component:GoodsCategory },
-      { path:'/params', component:GoodsParams }
+      { path:'/params', component:GoodsParams },
+      { path:'/goods', component:GoodsList },
+      { path:'/goods/add', component:AddGoods }
     ]
   }
 

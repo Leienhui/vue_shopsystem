@@ -38,7 +38,7 @@
               v-for="subItem in item.children"
               :index="'/' + subItem.path"
               :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
+              @click="('/' + subItem.path)"
             >
               <template slot="title">
                 <i class="iconfont icon-caidan"></i>
@@ -98,13 +98,13 @@ export default {
     },
     toggleCollpase() {
       this.isCollapse = !this.isCollapse
+    },
+    // 获取导航的激活状态
+    saveNavState(activePath) {
+      // 将这个状态保存在sessionStorage中
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
-    // // 获取导航的激活状态
-    // saveNavState(activePath) {
-    //   // 将这个状态保存在sessionStorage中
-    //   window.sessionStorage.setItem('activePath', activePath)
-    //   this.activePath = activePath
-    // }
   }
 }
 </script>

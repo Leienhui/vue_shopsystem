@@ -33,6 +33,17 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 // 参数1:自定义名称,参数2:组件
 Vue.component('tree-table', TreeTable)
+// 全局可调用dateFormat这个过滤器了
+Vue.filter('dateFormat', (originVal) => {
+  const date = new Date(originVal)
+  const y = date.getFullYear()
+  const m = (date.getMonth() + 1 + '').padStart(2, '')
+  const d = (date.getDate() + '').padStart(2, '0')
+  const h = (date.getHours() + '').padStart(2, '0')
+  const mm = (date.getMinutes() + '').padStart(2, '0')
+  const s = (date.getSeconds() + '').padStart(2, '0')
+  return `${y}-${m}-${d}  ${h}:${mm}:${s}`
+})
 new Vue({
   router,
   store,
