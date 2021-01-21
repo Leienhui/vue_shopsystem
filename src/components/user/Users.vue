@@ -404,7 +404,7 @@ export default {
       this.$refs.editFormRef.validate(async (valid) => {
         if (!valid) return this.$message.error('用户验证失败')
         // 校验成功发起ajax请求
-        console.log(this.editForm.mobile)
+        // console.log(this.editForm.mobile)
         const { data: res } = await this.$http.put(
           `users/${this.editForm.id}`,
           { email: this.editForm.email, mobile: this.editForm.mobile }
@@ -425,7 +425,7 @@ export default {
     },
     // 删除用户信息
     async delUser(id) {
-      console.log(id)
+      // console.log(id)
       await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

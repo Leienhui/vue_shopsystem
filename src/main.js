@@ -23,7 +23,7 @@ Vue.use(elementUi)
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 挂载请求拦截器，
 axios.interceptors.request.use(config => {
-  console.log(config)
+  // console.log(config)
   // 为请求头对象添加token验证的Authorization
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config

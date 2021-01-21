@@ -315,7 +315,7 @@ export default {
       this.roleId = role.id
       // 获取所有权限
       const { data:res } = await this.$http.get('rights/tree')
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取分配权限列表失败')
       }

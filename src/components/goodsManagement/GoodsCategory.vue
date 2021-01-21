@@ -185,7 +185,7 @@ export default {
         return this.$message.error('获取商品分类列表失败')
       }
       this.goodsCategoryList = res.data
-      console.log(this.goodsCategoryList)
+      // console.log(this.goodsCategoryList)
     },
     // 监听pagesize的改变
     handleSizeChange(pagesize) {
@@ -237,7 +237,7 @@ export default {
           this.addGoodsCategoryForm
         )
         if (res.meta.status !== 201) return this.$message.error('添加分类失败')
-        console.log(res.data)
+        // console.log(res.data)
         this.$message.success('添加分类成功')
         this.getGoodCategoryList()
         this.addCategoryDialogVisible = false
@@ -256,7 +256,7 @@ export default {
       this.editCategoryDialogVisible = true
       // 将该行的数据回退到表单中
       this.editGoodsCategoryForm = goods
-      console.log(goods)
+      // console.log(goods)
     },
     // 关闭修改列表
     editCategoryFormClose() {

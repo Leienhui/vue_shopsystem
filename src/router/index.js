@@ -8,6 +8,7 @@ const Users = () => import('./../components/user/Users.vue')
 const Roles = () => import('./../components/authorityManagement/Roles.vue')
 const AuthorityList = () => import('./../components/authorityManagement/AuthorityList.vue')
 const GoodsCategory = () => import('./../components/goodsManagement/GoodsCategory.vue')
+const GoodsParams = () => import('./../components/goodsManagement/GoodsParams.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -21,7 +22,8 @@ const routes = [
       { path:'/users', component:Users },
       { path:'/rights', component:AuthorityList },
       { path:'/roles', component:Roles },
-      { path:'/categories', component:GoodsCategory }
+      { path:'/categories', component:GoodsCategory },
+      { path:'/params', component:GoodsParams }
     ]
   }
 

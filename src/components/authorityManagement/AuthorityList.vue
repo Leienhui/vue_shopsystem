@@ -43,7 +43,7 @@ export default {
     //   获取权限列表
     async getAuthoritesList() {
       const { data: res } = await this.$http.get('rights/list ')
-      console.log(res.data)
+      // console.log(res.data)
       if (res.meta.status !== 200) return this.$message.error('获取权限失败')
       //   给权限列表赋值
       this.authoritesList = res.data

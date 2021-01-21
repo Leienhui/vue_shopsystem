@@ -63,7 +63,7 @@ export default {
     // 点击重置按钮，重置登录表单
     resetLoginForm() {
       // 重置表单
-      console.log(this.$refs)
+      // console.log(this.$refs)
       // this.$refs.loginFormRef：拿到了ref为loginFormRef的表单
       this.$refs.loginFormRef.resetFields()
     },
@@ -71,7 +71,7 @@ export default {
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
         // 参数1时验证的结果
-        console.log(valid)
+        // console.log(valid)
         if (!valid) {
           return
         }
