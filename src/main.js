@@ -15,10 +15,16 @@ import TreeTable from 'vue-table-with-tree-grid'
 // 全局导入element ui
 import elementUi from 'element-ui'
 // 导入相关css
-import 'element-ui/lib/theme-chalk/index.css'// 导入 css
+import 'element-ui/lib/theme-chalk/index.css'
+// ========================================================================
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'// 导入 css
 // 注册全局elementui
 Vue.use(elementUi)
-// ========================================================================
+// 将富文本编辑器注册为全局可用组件
+Vue.use(VueQuillEditor)
 // 配置请求的根路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 挂载请求拦截器，
