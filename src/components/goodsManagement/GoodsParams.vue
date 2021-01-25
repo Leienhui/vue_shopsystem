@@ -261,13 +261,7 @@ export default {
       // 修改表单规则
       modifyParamsFormRules: {
         attr_name: [
-          { required: true, message: '请输入参数名称', trigger: 'blur' },
-          {
-            min: 2,
-            max: 15,
-            message: '长度在 2 到 15 个字符',
-            trigger: 'blur'
-          }
+          { required: true, message: '请输入参数名称', trigger: 'blur' }
         ]
       }
     }

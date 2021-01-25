@@ -11,6 +11,7 @@ const GoodsCategory = () => import('./../components/goodsManagement/GoodsCategor
 const GoodsParams = () => import('./../components/goodsManagement/GoodsParams.vue')
 const GoodsList = () => import('./../components/goodsManagement/GoodsList.vue')
 const AddGoods = () => import('./../components/goodsManagement/AddGoods.vue')
+const OrderManage = () => import('./../components/order/OrderManange.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -27,7 +28,8 @@ const routes = [
       { path:'/categories', component:GoodsCategory },
       { path:'/params', component:GoodsParams },
       { path:'/goods', component:GoodsList },
-      { path:'/goods/add', component:AddGoods }
+      { path:'/goods/add', component:AddGoods },
+      { path:'/orders', component:OrderManage }
     ]
   }
 
