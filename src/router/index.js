@@ -12,6 +12,7 @@ const GoodsParams = () => import('./../components/goodsManagement/GoodsParams.vu
 const GoodsList = () => import('./../components/goodsManagement/GoodsList.vue')
 const AddGoods = () => import('./../components/goodsManagement/AddGoods.vue')
 const OrderManage = () => import('./../components/order/OrderManange.vue')
+const ReportForms = () => import('./../components/report/ReportForms.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -29,7 +30,8 @@ const routes = [
       { path:'/params', component:GoodsParams },
       { path:'/goods', component:GoodsList },
       { path:'/goods/add', component:AddGoods },
-      { path:'/orders', component:OrderManage }
+      { path:'/orders', component:OrderManage },
+      { path:'/reports', component:ReportForms }
     ]
   }
 
